@@ -15,7 +15,6 @@ from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 import signal
 import time
-import urllib2
 
 class GracefulKiller:
   kill_now = False
@@ -25,7 +24,7 @@ class GracefulKiller:
 
   def exit_gracefully(self,signum, frame):
     self.kill_now = True
-    print "Received Shutdown Signal"    
+    print "Received Shutdown Signal"
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
@@ -35,7 +34,7 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write("<html><body><h1>These aren't the ports you are looking for!!</h1></body></html>")
+        self.wfile.write('{"array":[1,2,3],"boolean":true,"null":null,"number":123,"object":{"a":"b","c":"d","e":"f"},"string":"Hello Montana"}')
 
     def do_HEAD(self):
         self._set_headers()
