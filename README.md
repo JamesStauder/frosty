@@ -1,16 +1,23 @@
 # pyserver
 
 
-https://pypi.python.org/pypi/pydemon/0.1.1
-
-Monitor for any changes in your Project
-
 ##How to install
 
-$ sudo pip install pydemon
+$ git clone https://github.com/SilentAccordion/pyserver .
 
 ##How to use
 
-$ pydemon 'bash script'
+$ sudo ./pydemon ./server.py
 or
-$ pydemon script.sh
+$ sudo ./server.py
+
+##Hover to access
+
+http://localhost/
+
+##Based on work from
+
+Monitor for any changes in your Project, modified to work with httpd
+https://pypi.python.org/pypi/pydemon/0.1.1
+
+
