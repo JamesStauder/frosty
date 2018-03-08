@@ -12,9 +12,12 @@ Send a POST request::
 """
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from helperFiles.BlackBox import *
+
 import SocketServer
 import signal
 import time
+
 
 class GracefulKiller:
   kill_now = False
@@ -34,6 +37,13 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
+        
+        #Modifications go to command line
+        print "Processing Request"
+
+        hdf_name = '.data/latest_profile.h5'
+        myBlackBox = IceCube(hdf_name, 1, 10)
+        myBlackBox.runAllSteps()
         self.wfile.write('{"array":[1,2,3],"boolean":true,"null":null,"number":123,"object":{"a":"b","c":"d","e":"f"},"string":"Hello From Missoula, Montana"}')
 
     def do_HEAD(self):
@@ -45,7 +55,7 @@ class S(BaseHTTPRequestHandler):
         self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
 
-def run(server_class=HTTPServer, handler_class=S, port=80):
+def run(server_class=HTTPServer, handler_class=S, port=8080):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print 'Starting httpd...'

@@ -13,7 +13,7 @@ import datetime
 import json
 import requests
 
-sleep_time = 1
+sleep_time = 3
 bashCmd = ""
 now_time = 1000
 last_time = 1001
@@ -63,10 +63,10 @@ def run_cmd(bashCmd):
 		print "Starting: Reloading"
 	  	# print process.pid
 		os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-		r = requests.get('http://localhost:80') 
+		r = requests.get('http://localhost:8080') 
 		# r.text
 		# print "sleeping..."
-		time.sleep(3)
+		time.sleep(sleep_time)
 		print "awake sleeping..."
 		process = subprocess.Popen(bashCmd, shell=True 
 					,stdout=None, stderr=None, preexec_fn=os.setsid)
