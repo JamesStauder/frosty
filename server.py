@@ -52,6 +52,29 @@ class S(BaseHTTPRequestHandler):
     def do_POST(self):
         # Doesn't do anything with posted data
         self._set_headers()
+        print ("in post method")
+        self.json_string = self.rfile.read(int(self.headers['Content-Length']))
+
+        self.send_response(200)
+        self.end_headers()
+
+        print (self.json_string)
+
+        # Read json_string, to load into variables
+        json_data = json.loads(self.json_string)
+
+        # {
+        #   "duration": 1000,
+        #   "interval": 200,
+        #   "map": "velocity",
+        #   "ID": 1500
+        # }
+
+        print(json_data['duration'])
+        print(json_data['interval'])
+        print(json_data['map'])
+        print(json_data['ID'])
+
         self.wfile.write("<html><body><h1>POST!</h1></body></html>")
 
 
